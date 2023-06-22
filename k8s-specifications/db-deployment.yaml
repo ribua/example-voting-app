@@ -15,18 +15,26 @@ spec:
         app: db
     spec:
       containers:
-      - image: postgres:15-alpine
-        name: postgres
+      resources:
+        limits:
+          cpu: 1000m
+          memory: 1GB
+        requests:
+          cpu: 500m
+          memory: 512Mi
+      - image: registry.redhat.io/rhel8/postgresql-12:1-140
         env:
-        - name: POSTGRES_USER
-          value: postgres
-        - name: POSTGRES_PASSWORD
-          value: postgres
+        - name: POSTGRESQL_USER
+          value: postgres1
+        - name: POSTGRESQL_PASSWORD
+          value: postgres1
+        - name: POSTGRESQL_DATABASE
+          value: db
         ports:
         - containerPort: 5432
           name: postgres
         volumeMounts:
-        - mountPath: /var/lib/postgresql/data
+        - mountPath: /var/lib/pgsql/data:Z
           name: db-data
       volumes:
       - name: db-data
