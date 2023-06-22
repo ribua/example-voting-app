@@ -4,6 +4,7 @@ metadata:
   labels:
     app: vote
   name: vote
+  namespace: example-voting
 spec:
   replicas: 1
   selector:
@@ -15,7 +16,7 @@ spec:
         app: vote
     spec:
       containers:
-      - image: dockersamples/examplevotingapp_vote
+      - image: quay.io/rabraham/python-slim:v1.1
         name: vote
         ports:
         - containerPort: 80

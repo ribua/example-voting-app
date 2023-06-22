@@ -15,14 +15,8 @@ spec:
         app: db
     spec:
       containers:
-      resources:
-        limits:
-          cpu: 1000m
-          memory: 1GB
-        requests:
-          cpu: 500m
-          memory: 512Mi
       - image: registry.redhat.io/rhel8/postgresql-12:1-140
+        name: postgres
         env:
         - name: POSTGRESQL_USER
           value: postgres1

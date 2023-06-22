@@ -1,15 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
+  name: resultsvc
+  namespace: example-voting
   labels:
     app: result
-  name: result
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
-  - name: "result-service"
-    port: 5001
-    targetPort: 80
-    nodePort: 31001
+    - port: 31001
+      name: http-port
+      protocol: TCP
+      targetPort: 8080
   selector:
     app: result
