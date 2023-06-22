@@ -30,6 +30,8 @@ spec:
         volumeMounts:
         - mountPath: /var/lib/pgsql/data:Z
           name: db-data
+      security context:
+        runAsNonRoot: false
       volumes:
       - name: db-data
         emptyDir: {} 
